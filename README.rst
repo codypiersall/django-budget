@@ -9,7 +9,7 @@ standalone app.  To get a functioning app, you have to run these commands:
     cd django-budget
     python manage.py makemigrations budget categories transactions
     python manage.py migrate
-    python manage.py collectstatic
+    python manage.py collectstatic --noinput
     python manage.py runserver
 
 After running these commands once, you can run the app in the future by just
