@@ -50,7 +50,7 @@ class Budget(StandardMetadata):
                 'transactions': estimate.actual_transactions(start_date, end_date),
                 'actual_amount': actual_amount,
             })
-        
+
         return (estimates_and_transactions, actual_total)
 
     def actual_total(self, start_date, end_date):
@@ -59,12 +59,13 @@ class Budget(StandardMetadata):
         for estimate in self.estimates.exclude(is_deleted=True):
             actual_amount = estimate.actual_amount(start_date, end_date)
             actual_total += actual_amount
-        
+
         return actual_total
 
     class Meta:
         verbose_name = _('Budget')
         verbose_name_plural = _('Budgets')
+    __str__ = __unicode__
 
 class BudgetEstimate(StandardMetadata):
     """
@@ -83,11 +84,13 @@ class BudgetEstimate(StandardMetadata):
     def __unicode__(self):
         return u"%s - %s" % (self.category.name, self.amount)
 
+    __str__ = __unicode__
+
     def yearly_estimated_amount(self):
         return self.amount * 12
 
     def actual_transactions(self, start_date, end_date):
-        # Estimates should only report on expenses to prevent incomes from 
+        # Estimates should only report on expenses to prevent incomes from
         # (incorrectly) artificially inflating totals.
         return Transaction.expenses.filter(category=self.category, date__range=(start_date, end_date)).order_by('date')
 
@@ -96,7 +99,7 @@ class BudgetEstimate(StandardMetadata):
         for transaction in self.actual_transactions(start_date, end_date):
             total += transaction.amount
         return total
-        
+
     class Meta:
         verbose_name = _('Budget estimate')
         verbose_name_plural = _('Budget estimates')

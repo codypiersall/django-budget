@@ -46,7 +46,7 @@ def transaction_add(request, form_class=TransactionForm, template_name='budget/t
     """
     if request.POST:
         form = form_class(request.POST)
-        
+
         if form.is_valid():
             transaction = form.save()
             return HttpResponseRedirect(reverse('budget_transaction_list'))
@@ -71,7 +71,7 @@ def transaction_edit(request, transaction_id, model_class=Transaction, form_clas
     transaction = get_object_or_404(model_class.active.all(), pk=transaction_id)
     if request.POST:
         form = form_class(request.POST, instance=transaction)
-        
+
         if form.is_valid():
             category = form.save()
             return HttpResponseRedirect(reverse('budget_transaction_list'))
