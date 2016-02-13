@@ -19,6 +19,9 @@ running
 
     python manage.py runserver
 
+To look at your budget stuff, go in your browser to
+``http://127.0.0.1:8000/budget/``.  Happy budgeting!
+
 =============
 django-budget
 =============
