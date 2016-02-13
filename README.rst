@@ -1,3 +1,24 @@
+This is a fork of `django-budget <https://github.com/toastdriven/django-budget>`_.
+
+It has been modified to work with django 1.9, and also to function as a
+standalone app.  To get a functioning app, you have to run these commands:
+
+.. code-block:: bash
+
+    git clone https://github.com/codypiersall/django-budget.git
+    cd django-budget
+    python manage.py makemigrations budget categories transactions
+    python manage.py migrate
+    python manage.py collectstatic
+    python manage.py runserver
+
+After running these commands once, you can run the app in the future by just
+running
+
+.. code-block:: bash
+
+    python manage.py runserver
+
 =============
 django-budget
 =============
